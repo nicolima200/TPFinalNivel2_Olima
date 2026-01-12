@@ -201,10 +201,9 @@ namespace frmPrincipal
                 try
                 {
                     ProductoService productoService = new ProductoService();
-                    producto = productoService.buscarCadena(txbCodigo.Text);
+                    producto = productoService.buscarCodigo(txbCodigo.Text);
                     if (producto != null)
                     {
-                        string estado;
                         string cadenaProd = producto.Cod + " \"" + producto.Nombre + " " + producto.Descripcion;
                         DialogResult resultado = MessageBox.Show("El producto con Codigo: " + cadenaProd + "\" ya existe.\n" +
                             "¿Desea modificarlo?", "Producto existente", MessageBoxButtons.YesNo);
@@ -219,6 +218,7 @@ namespace frmPrincipal
                             txbCodigo.Clear();
                             MessageBox.Show("El Codigo ya existe. Intente con otro o elimine definitivamente el producto.");
                             producto = null;
+                            txbCodigo.Focus();
                         }
 
                     }

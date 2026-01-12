@@ -5,7 +5,7 @@ namespace service
     public class AccesoDatos
     {
         private SqlConnection conexion;
-        private SqlCommand comando;
+        public SqlCommand comando;
         private SqlDataReader lector;
 
         public SqlDataReader Lector => lector;

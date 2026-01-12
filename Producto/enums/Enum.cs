@@ -10,6 +10,7 @@ namespace dominio.enums
     {
         Nombre,
         Codigo,
+        Marca,
         Categoria,
         Precio
     }

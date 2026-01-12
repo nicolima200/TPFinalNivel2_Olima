@@ -54,6 +54,7 @@ namespace frmPrincipal
             this.cboCriterio = new System.Windows.Forms.ComboBox();
             this.cboCampo = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnLimpiarFiltroAvanzado = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrincipal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProducto)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -86,7 +87,7 @@ namespace frmPrincipal
             // lblTitulo
             // 
             this.lblTitulo.Font = new System.Drawing.Font("Bahnschrift Condensed", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(6, 30);
+            this.lblTitulo.Location = new System.Drawing.Point(6, 33);
             this.lblTitulo.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(265, 50);
@@ -105,6 +106,8 @@ namespace frmPrincipal
             // 
             // btnLimpiarFiltro
             // 
+            this.btnLimpiarFiltro.BackColor = System.Drawing.Color.Orange;
+            this.btnLimpiarFiltro.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLimpiarFiltro.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.btnLimpiarFiltro.ForeColor = System.Drawing.SystemColors.InfoText;
             this.btnLimpiarFiltro.Location = new System.Drawing.Point(213, 24);
@@ -112,13 +115,13 @@ namespace frmPrincipal
             this.btnLimpiarFiltro.Size = new System.Drawing.Size(95, 34);
             this.btnLimpiarFiltro.TabIndex = 10;
             this.btnLimpiarFiltro.Text = "Limpiar filtro";
-            this.btnLimpiarFiltro.UseVisualStyleBackColor = true;
+            this.btnLimpiarFiltro.UseVisualStyleBackColor = false;
             this.btnLimpiarFiltro.Click += new System.EventHandler(this.btnLimpiarFiltro_Click);
             // 
             // lblNombre
             // 
             this.lblNombre.Font = new System.Drawing.Font("Bahnschrift Condensed", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.lblNombre.ForeColor = System.Drawing.Color.Aqua;
+            this.lblNombre.ForeColor = System.Drawing.Color.Aquamarine;
             this.lblNombre.Location = new System.Drawing.Point(1, 36);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(360, 75);
@@ -129,7 +132,7 @@ namespace frmPrincipal
             // 
             this.lblDescripcion.BackColor = System.Drawing.Color.LightSeaGreen;
             this.lblDescripcion.Font = new System.Drawing.Font("Bahnschrift Condensed", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.ForeColor = System.Drawing.Color.Aqua;
+            this.lblDescripcion.ForeColor = System.Drawing.Color.Aquamarine;
             this.lblDescripcion.Location = new System.Drawing.Point(3, 104);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(359, 82);
@@ -161,28 +164,35 @@ namespace frmPrincipal
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.menuStrip1.AutoSize = false;
             this.menuStrip1.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmMenuGestion});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(666, 31);
+            this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.menuStrip1.Size = new System.Drawing.Size(666, 40);
             this.menuStrip1.TabIndex = 22;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // tsmMenuGestion
             // 
+            this.tsmMenuGestion.BackColor = System.Drawing.Color.Aquamarine;
             this.tsmMenuGestion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.agregarProductoToolStripMenuItem,
             this.modificarProductoToolStripMenuItem,
             this.eliminarProductoToolStripMenuItem});
             this.tsmMenuGestion.Font = new System.Drawing.Font("Bahnschrift Condensed", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsmMenuGestion.Name = "tsmMenuGestion";
-            this.tsmMenuGestion.Size = new System.Drawing.Size(106, 27);
+            this.tsmMenuGestion.Size = new System.Drawing.Size(106, 36);
             this.tsmMenuGestion.Text = "Menú gestión";
             // 
             // agregarProductoToolStripMenuItem
             // 
+            this.agregarProductoToolStripMenuItem.BackColor = System.Drawing.Color.Aquamarine;
             this.agregarProductoToolStripMenuItem.Name = "agregarProductoToolStripMenuItem";
             this.agregarProductoToolStripMenuItem.Size = new System.Drawing.Size(200, 28);
             this.agregarProductoToolStripMenuItem.Text = "Agregar producto";
@@ -190,6 +200,7 @@ namespace frmPrincipal
             // 
             // modificarProductoToolStripMenuItem
             // 
+            this.modificarProductoToolStripMenuItem.BackColor = System.Drawing.Color.SpringGreen;
             this.modificarProductoToolStripMenuItem.Name = "modificarProductoToolStripMenuItem";
             this.modificarProductoToolStripMenuItem.Size = new System.Drawing.Size(200, 28);
             this.modificarProductoToolStripMenuItem.Text = "Modificar producto";
@@ -197,6 +208,8 @@ namespace frmPrincipal
             // 
             // eliminarProductoToolStripMenuItem
             // 
+            this.eliminarProductoToolStripMenuItem.BackColor = System.Drawing.Color.OrangeRed;
+            this.eliminarProductoToolStripMenuItem.ForeColor = System.Drawing.SystemColors.Window;
             this.eliminarProductoToolStripMenuItem.Name = "eliminarProductoToolStripMenuItem";
             this.eliminarProductoToolStripMenuItem.Size = new System.Drawing.Size(200, 28);
             this.eliminarProductoToolStripMenuItem.Text = "Eliminar producto";
@@ -207,7 +220,7 @@ namespace frmPrincipal
             this.lblPrecioTexto.AutoSize = true;
             this.lblPrecioTexto.BackColor = System.Drawing.Color.LightSeaGreen;
             this.lblPrecioTexto.Font = new System.Drawing.Font("Bahnschrift Condensed", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioTexto.ForeColor = System.Drawing.Color.Aqua;
+            this.lblPrecioTexto.ForeColor = System.Drawing.Color.Aquamarine;
             this.lblPrecioTexto.Location = new System.Drawing.Point(2, 188);
             this.lblPrecioTexto.Name = "lblPrecioTexto";
             this.lblPrecioTexto.Size = new System.Drawing.Size(74, 33);
@@ -234,6 +247,7 @@ namespace frmPrincipal
             // gbxBusquedaAvanzada
             // 
             this.gbxBusquedaAvanzada.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.gbxBusquedaAvanzada.Controls.Add(this.btnLimpiarFiltroAvanzado);
             this.gbxBusquedaAvanzada.Controls.Add(this.lblValorABuscar);
             this.gbxBusquedaAvanzada.Controls.Add(this.lblCriterio);
             this.gbxBusquedaAvanzada.Controls.Add(this.lblCampo);
@@ -254,7 +268,7 @@ namespace frmPrincipal
             // 
             this.lblValorABuscar.AutoSize = true;
             this.lblValorABuscar.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.lblValorABuscar.Location = new System.Drawing.Point(356, 29);
+            this.lblValorABuscar.Location = new System.Drawing.Point(318, 28);
             this.lblValorABuscar.Name = "lblValorABuscar";
             this.lblValorABuscar.Size = new System.Drawing.Size(89, 19);
             this.lblValorABuscar.TabIndex = 6;
@@ -264,7 +278,7 @@ namespace frmPrincipal
             // 
             this.lblCriterio.AutoSize = true;
             this.lblCriterio.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.lblCriterio.Location = new System.Drawing.Point(179, 29);
+            this.lblCriterio.Location = new System.Drawing.Point(159, 28);
             this.lblCriterio.Name = "lblCriterio";
             this.lblCriterio.Size = new System.Drawing.Size(51, 19);
             this.lblCriterio.TabIndex = 5;
@@ -283,23 +297,26 @@ namespace frmPrincipal
             // btnBusquedaAvanzada
             // 
             this.btnBusquedaAvanzada.AutoSize = true;
+            this.btnBusquedaAvanzada.BackColor = System.Drawing.Color.Aquamarine;
+            this.btnBusquedaAvanzada.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBusquedaAvanzada.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.btnBusquedaAvanzada.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.btnBusquedaAvanzada.Location = new System.Drawing.Point(565, 48);
+            this.btnBusquedaAvanzada.Location = new System.Drawing.Point(475, 43);
             this.btnBusquedaAvanzada.Name = "btnBusquedaAvanzada";
             this.btnBusquedaAvanzada.Size = new System.Drawing.Size(75, 33);
             this.btnBusquedaAvanzada.TabIndex = 3;
             this.btnBusquedaAvanzada.Text = "Buscar";
-            this.btnBusquedaAvanzada.UseVisualStyleBackColor = true;
+            this.btnBusquedaAvanzada.UseVisualStyleBackColor = false;
             this.btnBusquedaAvanzada.Click += new System.EventHandler(this.btnBusquedaAvanzada_Click);
             // 
             // tbxBusquedaAvanzada
             // 
             this.tbxBusquedaAvanzada.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.tbxBusquedaAvanzada.Location = new System.Drawing.Point(360, 50);
+            this.tbxBusquedaAvanzada.Location = new System.Drawing.Point(322, 48);
             this.tbxBusquedaAvanzada.Name = "tbxBusquedaAvanzada";
-            this.tbxBusquedaAvanzada.Size = new System.Drawing.Size(171, 27);
+            this.tbxBusquedaAvanzada.Size = new System.Drawing.Size(147, 27);
             this.tbxBusquedaAvanzada.TabIndex = 2;
+            this.tbxBusquedaAvanzada.Tag = "Valor a buscar";
             this.tbxBusquedaAvanzada.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxBusquedaAvanzada_KeyPress);
             // 
             // cboCriterio
@@ -307,9 +324,9 @@ namespace frmPrincipal
             this.cboCriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCriterio.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.cboCriterio.FormattingEnabled = true;
-            this.cboCriterio.Location = new System.Drawing.Point(183, 50);
+            this.cboCriterio.Location = new System.Drawing.Point(164, 48);
             this.cboCriterio.Name = "cboCriterio";
-            this.cboCriterio.Size = new System.Drawing.Size(166, 27);
+            this.cboCriterio.Size = new System.Drawing.Size(147, 27);
             this.cboCriterio.TabIndex = 1;
             // 
             // cboCampo
@@ -317,9 +334,9 @@ namespace frmPrincipal
             this.cboCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCampo.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.cboCampo.FormattingEnabled = true;
-            this.cboCampo.Location = new System.Drawing.Point(6, 50);
+            this.cboCampo.Location = new System.Drawing.Point(6, 48);
             this.cboCampo.Name = "cboCampo";
-            this.cboCampo.Size = new System.Drawing.Size(166, 27);
+            this.cboCampo.Size = new System.Drawing.Size(147, 27);
             this.cboCampo.TabIndex = 0;
             this.cboCampo.SelectionChangeCommitted += new System.EventHandler(this.cboCampo_SelectionChangeCommitted);
             // 
@@ -336,6 +353,21 @@ namespace frmPrincipal
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Búsqueda rápida:";
+            // 
+            // btnLimpiarFiltroAvanzado
+            // 
+            this.btnLimpiarFiltroAvanzado.AutoSize = true;
+            this.btnLimpiarFiltroAvanzado.BackColor = System.Drawing.Color.Orange;
+            this.btnLimpiarFiltroAvanzado.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLimpiarFiltroAvanzado.Font = new System.Drawing.Font("Bahnschrift Condensed", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.btnLimpiarFiltroAvanzado.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.btnLimpiarFiltroAvanzado.Location = new System.Drawing.Point(554, 43);
+            this.btnLimpiarFiltroAvanzado.Name = "btnLimpiarFiltroAvanzado";
+            this.btnLimpiarFiltroAvanzado.Size = new System.Drawing.Size(85, 33);
+            this.btnLimpiarFiltroAvanzado.TabIndex = 7;
+            this.btnLimpiarFiltroAvanzado.Text = "Limpiar filtro";
+            this.btnLimpiarFiltroAvanzado.UseVisualStyleBackColor = false;
+            this.btnLimpiarFiltroAvanzado.Click += new System.EventHandler(this.btnLimpiarFiltroAvanzado_Click);
             // 
             // frmProductos
             // 
@@ -370,7 +402,6 @@ namespace frmPrincipal
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -400,6 +431,7 @@ namespace frmPrincipal
         private Label lblCriterio;
         private Label lblCampo;
         private GroupBox groupBox1;
+        private Button btnLimpiarFiltroAvanzado;
     }
 }
 

@@ -41,18 +41,16 @@ namespace frmPrincipal
 
         }
 
-        private void cargar(bool activo = true)
+        private void cargar()
         {
             try
             {
 
                 ProductoService productoService = new ProductoService();
                 listaProductos = new BindingList<Producto>();
-                if (activo)
-                    listaProductos = productoService.listar();
-                else
-                    listaProductos = productoService.listar(false);
-
+                
+                listaProductos = productoService.listar();
+                
                 dgvPrincipal.DataSource = listaProductos;
                 dgvPrincipal.Columns["Precio"].DefaultCellStyle.Format = "F2";
                 dgvPrincipal.Columns["Precio"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -128,8 +126,7 @@ namespace frmPrincipal
         {
             if (string.IsNullOrWhiteSpace(tbxFiltro.Text))
             {
-                dgvPrincipal.DataSource = null;
-                dgvPrincipal.DataSource = listaProductos;
+                cargar();
                 //DgvPrincipal.CurrentCell = DgvPrincipal.Rows[0].Cells[1];
             }
 
@@ -140,7 +137,7 @@ namespace frmPrincipal
                 string filtro = tbxFiltro.Text.ToLower();
 
                 //Aplicamos el filtro y volvemos a castear a BindingList
-                BindingList<Producto> listaFiltrada = new BindingList<Producto>(listaTemp.FindAll(x => x.Nombre.ToLower().Contains(filtro) || x.Descripcion.ToLower().Contains(filtro) || x.Marca.Descripcion.ToLower().Contains(filtro) || x.Categoria.Descripcion.ToLower().Contains(filtro)));
+                BindingList<Producto> listaFiltrada = new BindingList<Producto>(listaTemp.FindAll(x => x.Cod.ToLower().Contains(filtro) || x.Nombre.ToLower().Contains(filtro) || x.Descripcion.ToLower().Contains(filtro) || x.Marca.Descripcion.ToLower().Contains(filtro) || x.Categoria.Descripcion.ToLower().Contains(filtro)));
                 //List<Producto>listaFiltrada = listaTemp.FindAll(x => x.Nombre.ToLower().Contains(filtro) || x.Descripcion.ToLower().Contains(filtro) || x.Marca.Descripcion.ToLower().Contains(filtro) || x.Categoria.Descripcion.ToLower().Contains(filtro));
                 dgvPrincipal.DataSource = listaFiltrada;
 
@@ -206,7 +203,7 @@ namespace frmPrincipal
                 if (resultado == DialogResult.Yes)
                 {
                     productoService.eliminarFisico(productoSeleccionado.Id);
-                    cargar(false);
+                    cargar();
                 }
                 if (dgvPrincipal.Rows.Count == 0)
                 {
@@ -246,9 +243,20 @@ namespace frmPrincipal
 
         private void btnBusquedaAvanzada_Click(object sender, EventArgs e)
         {
-            if (cboCampo.SelectedIndex == -1 || cboCriterio.SelectedIndex ==-1)
+            busquedaAvanzada();
+        }
+
+        private void busquedaAvanzada()
+        {
+            if (cboCampo.SelectedIndex == -1 || cboCriterio.SelectedIndex == -1)
             {
-                MessageBox.Show("Debe seleccionar un campo para la búsqueda avanzada.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Debe seleccionar un campo y un criterio para la búsqueda avanzada.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            if (tbxBusquedaAvanzada.Text.Trim() == "")
+            {
+                MessageBox.Show("Debe ingresar un valor para la búsqueda avanzada.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -257,32 +265,63 @@ namespace frmPrincipal
 
             if ((CampoBusqueda)cboCampo.SelectedItem == CampoBusqueda.Precio)
             {
-
+                if (!Helper.validarTxbNumericos(tbxBusquedaAvanzada, false))
+                {
+                    return;
+                }
+                string operador = obtenerOperador(cboCriterio.SelectedItem);
+                listaFiltrada = productoService.buscarPrecio(operador, Convert.ToDecimal(tbxBusquedaAvanzada.Text));
             }
             else
             {
                 string cadena = obtenerCadena(cboCriterio.SelectedItem, tbxBusquedaAvanzada.Text);
-
-                listaFiltrada = productoService.buscarCadena(cboCampo.SelectedItem.ToString(), tbxBusquedaAvanzada.Text.Trim());
+                string campo = obtenerCampo(cboCampo.SelectedItem);
+                listaFiltrada = productoService.buscarCadena(campo, cadena);
             }
 
 
             dgvPrincipal.DataSource = listaFiltrada;
         }
 
-        private string obtenerCadena(object selectedItem, string cadena)
+        private string obtenerOperador(object selectedItem)
+        {
+            switch (selectedItem)
+            {
+                case CriterioPrecio.MayorQue:
+                    return ">";
+                case CriterioPrecio.MenorQue:
+                    return "<";
+                default:
+                    return "=";
+            }
+        }
+
+        private string obtenerCampo(object selectedItem)
+        {
+            switch (selectedItem)
+            {
+                case CampoBusqueda.Marca:
+                    return "M.descripcion";
+                case CampoBusqueda.Categoria:
+                    return "C.descripcion";
+                default:
+                    return selectedItem.ToString();
+            }
+        }
+
+        private string obtenerCadena(object selectedItem, string valorTextbox)
         {
             if ((CriterioTexto)selectedItem == CriterioTexto.ComienzaCon)
             {
-                return cadena + "%";
+                return valorTextbox + "%";
             }
             else if ((CriterioTexto)selectedItem == CriterioTexto.TerminaCon)
             {
-                return "%" + cadena;
+                return "%" + valorTextbox;
             }
             else //Contiene
             {
-                return "%" + cadena + "%";
+                return "%" + valorTextbox + "%";
             }
         }
 
@@ -310,6 +349,17 @@ namespace frmPrincipal
                     Helper.soloDecimal(e, tbxBusquedaAvanzada);
 
             }
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                busquedaAvanzada();
+            }
+        }
+
+        private void btnLimpiarFiltroAvanzado_Click(object sender, EventArgs e)
+        {
+            tbxBusquedaAvanzada.Clear();
+            tbxBusquedaAvanzada.Focus();
+            cargar();
         }
     }
 }

@@ -96,15 +96,17 @@ namespace service
         public Producto buscarCodigo(string codigo)
         {
             AccesoDatos datos= new AccesoDatos();
-            datos.setConsulta(consulta.SqlBuscarCadena);
-            datos.setParametro("@campo", "Codigo");
+            datos.setConsulta(consulta.SqlBuscarCodigo);
             datos.setParametro("@cadena", codigo);
+            Producto productoEncontrado;
             try
             {
                 datos.ejecutarConsulta();
                 if (datos.Lector.Read())
                 {    
-                   return getProductosLector(datos);                
+                   productoEncontrado = new Producto();
+                   productoEncontrado = getProductosLector(datos);
+                   return productoEncontrado;                
                 }
                 return null;                
             }
@@ -121,8 +123,9 @@ namespace service
         {
             BindingList<Producto> listaEncontrados = new BindingList<Producto>();
             AccesoDatos datos= new AccesoDatos();
-            datos.setConsulta(consulta.SqlBuscarCadena);
-            datos.setParametro("@campo", campo);
+            string consultaConCampo = string.Format(consulta.SqlBuscarCadena, campo);
+
+            datos.setConsulta(consultaConCampo);
             datos.setParametro("@cadena", cadena);
 
             try
@@ -134,7 +137,7 @@ namespace service
                 }
                 return listaEncontrados;                
             }
-            catch (Exception ex)
+                catch (Exception ex)
             {
                 throw new Exception("ERROR AL BUSCAR!: "+ex.Message);
             }
@@ -144,6 +147,32 @@ namespace service
             }
         }
 
+        public BindingList<Producto> buscarPrecio(string operador, decimal precio)
+        {
+            BindingList<Producto> listaEncontrados = new BindingList<Producto>();
+            AccesoDatos datos= new AccesoDatos();
+            string consultaConOperador = string.Format(consulta.SqlBuscarPrecio, operador);
+
+            datos.setConsulta(consultaConOperador);
+            datos.setParametro("@precio", precio);
+            try
+            {
+                datos.ejecutarConsulta();
+                while (datos.Lector.Read())
+                {    
+                   listaEncontrados.Add(getProductosLector(datos));
+                }
+                return listaEncontrados;                
+            }
+                catch (Exception ex)
+            {
+                throw new Exception("ERROR AL BUSCAR!: "+ex.Message);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public Producto getProductosLector(AccesoDatos datos)
         {
             // sqlListarActivos = "SELECT id,codBarras, nombre, descripcion, categoria,
