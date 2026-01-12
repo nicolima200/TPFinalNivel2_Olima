@@ -1,0 +1,15 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="frmPrincipal/frmPrincipal.csproj" Id="76d70d42-0c9d-4c52-b0af-0adf1050063c">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+  <Project Path="Producto/dominio.csproj" Id="6ae56017-bf56-405d-8d2c-874d31bbc374">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+  <Project Path="service/service.csproj" Id="6548aee2-d565-441e-8733-e9e2a9d9831c">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+</Solution>
