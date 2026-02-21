@@ -294,6 +294,9 @@ namespace frmPrincipal
             {
                 try
                 {
+                    if (!System.IO.Directory.Exists(carpeta))
+                        System.IO.Directory.CreateDirectory(carpeta);
+
                     File.Copy(archivo.FileName, rutaAchivoNuevo);
 
                 }
